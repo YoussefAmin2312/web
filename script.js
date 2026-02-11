@@ -6,8 +6,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // Smooth scroll for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if (!href || href === '#') {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                return;
+            }
+
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
+            const target = document.querySelector(href);
             if (target) {
                 target.scrollIntoView({
                     behavior: 'smooth',
@@ -60,41 +67,33 @@ document.addEventListener('DOMContentLoaded', () => {
         lastScroll = currentScroll;
     }, { passive: true });
 
-    // Parallax effect for phone mockups
-    const heroPhones = document.querySelector('.hero-phones');
+    // Hero panel micro-interaction (desktop only)
+    const heroPanels = document.querySelectorAll('[data-hero-panel]');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    if (heroPhones && window.innerWidth > 768) {
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const rate = scrolled * 0.15;
-            heroPhones.style.transform = `translateY(${rate}px)`;
-        }, { passive: true });
-    }
+    if (!prefersReducedMotion && heroPanels.length > 0 && window.innerWidth > 1024) {
+        heroPanels.forEach((panel) => {
+            panel.addEventListener('mousemove', (e) => {
+                const rect = panel.getBoundingClientRect();
+                const x = (e.clientX - rect.left) / rect.width - 0.5;
+                const y = (e.clientY - rect.top) / rect.height - 0.5;
+                const rotateX = (-y * 6).toFixed(2);
+                const rotateY = (x * 7).toFixed(2);
 
-    // Mouse move parallax for hero section
-    const hero = document.querySelector('.hero');
-    const phoneMain = document.querySelector('.phone-main');
-    const phoneSecondary = document.querySelector('.phone-secondary');
+                panel.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+            });
 
-    if (hero && phoneMain && window.innerWidth > 1024) {
-        hero.addEventListener('mousemove', (e) => {
-            const rect = hero.getBoundingClientRect();
-            const x = (e.clientX - rect.left) / rect.width - 0.5;
-            const y = (e.clientY - rect.top) / rect.height - 0.5;
-
-            requestAnimationFrame(() => {
-                phoneMain.style.transform = `translate(${x * 20}px, ${y * 20}px)`;
-                if (phoneSecondary) {
-                    phoneSecondary.style.transform = `scale(0.85) rotate(5deg) translate(${x * 30}px, ${y * 30}px)`;
-                }
+            panel.addEventListener('mouseleave', () => {
+                panel.style.transform = '';
             });
         });
-
-        hero.addEventListener('mouseleave', () => {
-            phoneMain.style.transform = '';
-            if (phoneSecondary) {
-                phoneSecondary.style.transform = '';
-            }
-        });
     }
+
+    // Ensure hero screenshots render as soon as loaded
+    document.querySelectorAll('.hero-panel .phone-screen').forEach((img) => {
+        if (img.complete) return;
+        img.addEventListener('load', () => {
+            img.style.opacity = '1';
+        }, { once: true });
+    });
 });

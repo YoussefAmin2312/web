@@ -118,9 +118,13 @@ img {
 }
 
 .logo-icon {
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
+    width: auto;
+    height: 18px;
+    object-fit: contain;
+    object-position: center;
+    max-width: none;
+    border-radius: 0;
+    display: block;
 }
 
 .nav-links {
@@ -157,35 +161,51 @@ img {
 
 /* Hero Section */
 .hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 120px 24px 80px;
+    min-height: auto;
     max-width: var(--container-max);
     margin: 0 auto;
+    padding: clamp(86px, 10vw, 114px) 24px clamp(42px, 6vw, 72px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(18px, 2.6vw, 28px);
     position: relative;
-    gap: 40px;
+    overflow: clip;
+    background: #000000;
+}
+
+.hero::before {
+    content: none;
+}
+
+.hero::after {
+    content: none;
 }
 
 .hero-content {
-    flex: 1;
-    max-width: 560px;
+    width: 100%;
+    max-width: 860px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
 }
 
 .hero-badge {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: rgba(139, 92, 246, 0.1);
-    border: 1px solid rgba(139, 92, 246, 0.3);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.18);
     padding: 8px 16px;
     border-radius: 100px;
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: var(--accent-purple-light);
+    font-family: 'Manrope', 'Inter', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    color: #ddd6fe;
     margin-bottom: 24px;
-    animation: fadeInUp 0.8s ease;
+    animation: fadeInUp 0.8s ease 0.05s backwards;
+    text-transform: uppercase;
 }
 
 .badge-dot {
@@ -211,20 +231,34 @@ img {
 }
 
 .hero-title {
-    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-family: 'Sora', 'Inter', sans-serif;
+    font-size: clamp(1.88rem, 3.6vw, 3.05rem);
     font-weight: 800;
-    line-height: 1.1;
+    line-height: 1.03;
     letter-spacing: -0.03em;
-    margin-bottom: 24px;
+    margin-bottom: 14px;
     animation: fadeInUp 0.8s ease 0.1s backwards;
+    text-wrap: balance;
 }
 
 .hero-subtitle {
-    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-family: 'Manrope', 'Inter', sans-serif;
+    font-size: clamp(0.94rem, 1.35vw, 1.07rem);
+    line-height: 1.5;
     color: var(--text-secondary);
-    margin-bottom: 40px;
-    max-width: 440px;
+    margin: 0 auto 20px;
+    max-width: 620px;
     animation: fadeInUp 0.8s ease 0.2s backwards;
+}
+
+.hero-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+    animation: fadeInUp 0.8s ease 0.3s backwards;
 }
 
 .hero-cta {
@@ -233,17 +267,58 @@ img {
     gap: 12px;
     background: var(--text-primary);
     color: var(--bg-primary);
-    padding: 16px 32px;
-    border-radius: 14px;
+    padding: 15px 28px;
+    border-radius: 999px;
     font-size: 1rem;
     font-weight: 600;
-    transition: all var(--transition-smooth);
-    animation: fadeInUp 0.8s ease 0.3s backwards;
+    transition: all var(--transition-fast);
+    border: 1px solid transparent;
 }
 
 .hero-cta:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(255, 255, 255, 0.15);
+    box-shadow: 0 14px 36px rgba(255, 255, 255, 0.18);
+}
+
+.hero-cta-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 22px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: all var(--transition-fast);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.hero-cta-ghost:hover {
+    border-color: rgba(168, 85, 247, 0.55);
+    color: #ddd6fe;
+    background: rgba(168, 85, 247, 0.1);
+}
+
+.hero-proof {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    animation: fadeInUp 0.8s ease 0.4s backwards;
+}
+
+.proof-item {
+    font-size: 0.78rem;
+    color: #e4e4e7;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 999px;
+    padding: 8px 12px;
+    white-space: nowrap;
+    font-family: 'Manrope', 'Inter', sans-serif;
+    font-weight: 600;
 }
 
 .apple-icon {
@@ -251,16 +326,147 @@ img {
     height: 20px;
 }
 
-/* Phone Mockups */
-.hero-phones {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* Hero Gallery */
+.hero-gallery {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(14px, 2.2vw, 24px);
     position: relative;
-    min-height: 500px;
+    z-index: 1;
+    align-items: start;
 }
 
+.hero-panel {
+    position: relative;
+    background: linear-gradient(180deg, rgba(18, 18, 18, 0.9), rgba(10, 10, 10, 0.95));
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 22px;
+    padding: clamp(12px, 1.6vw, 16px);
+    box-shadow: 0 30px 56px rgba(0, 0, 0, 0.52);
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(16px);
+    animation: heroPanelIn 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: var(--delay, 0s);
+    transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+    will-change: transform;
+}
+
+.hero-panel::after {
+    content: '';
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    top: 12px;
+    height: 40%;
+    background: linear-gradient(180deg, rgba(139, 92, 246, 0.16), rgba(139, 92, 246, 0));
+    border-radius: 20px;
+    pointer-events: none;
+    opacity: 0.38;
+}
+
+.hero-panel:hover {
+    transform: translateY(-8px);
+    border-color: rgba(168, 85, 247, 0.6);
+    box-shadow: 0 36px 64px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(168, 85, 247, 0.26);
+}
+
+.hero-panel-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-panel-title {
+    font-family: 'Sora', 'Inter', sans-serif;
+    font-size: clamp(0.88rem, 1.05vw, 0.98rem);
+    font-weight: 700;
+}
+
+.hero-panel-meta {
+    font-family: 'Manrope', 'Inter', sans-serif;
+    font-size: 0.7rem;
+    color: #d4d4d8;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 999px;
+    padding: 4px 8px;
+}
+
+.hero-panel-phone {
+    border-radius: 22px;
+    overflow: hidden;
+    animation: panelPhoneFloat 7.5s ease-in-out infinite;
+}
+
+.panel-heatmap .hero-panel-phone {
+    animation-delay: -1.5s;
+}
+
+.panel-category .hero-panel-phone {
+    animation-delay: -3s;
+}
+
+@keyframes panelPhoneFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+.hero-panel .phone-frame {
+    border-radius: 20px;
+    padding: 5px;
+    background: linear-gradient(145deg, #1a1a1a, #080808);
+    border: 1px solid rgba(255, 255, 255, 0.11);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.45);
+    width: clamp(104px, 12vw, 168px);
+    margin: 0 auto;
+}
+
+.hero-panel .phone-screen {
+    width: 100%;
+    border-radius: 14px;
+    aspect-ratio: 1290 / 2796;
+    object-fit: contain;
+    object-position: top;
+}
+
+.panel-home {
+    transform: none;
+}
+
+.panel-heatmap {
+    transform: none;
+}
+
+.panel-category {
+    transform: none;
+}
+
+@keyframes heroPanelIn {
+    from {
+        opacity: 0;
+        transform: translateY(28px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Reusable Phone Mockups */
 .phone-mockup {
     position: relative;
     animation: float 6s ease-in-out infinite;
@@ -279,22 +485,9 @@ img {
 .phone-screen {
     border-radius: 40px;
     width: 430px;
+    max-width: 100%;
     height: auto;
     display: block;
-}
-
-.phone-main {
-    z-index: 2;
-}
-
-.phone-secondary {
-    position: absolute;
-    right: -40px;
-    top: 60px;
-    transform: scale(0.85) rotate(5deg);
-    opacity: 0.7;
-    z-index: 1;
-    animation-delay: -2s;
 }
 
 @keyframes float {
@@ -307,18 +500,6 @@ img {
     50% {
         transform: translateY(-20px);
     }
-}
-
-.hero-glow {
-    position: absolute;
-    top: 50%;
-    right: 15%;
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
-    transform: translateY(-50%);
-    pointer-events: none;
-    z-index: 0;
 }
 
 /* Features Section */
@@ -398,10 +579,13 @@ img {
 }
 
 .feature-image {
-    width: 430px;
+    width: min(100%, 320px);
     height: auto;
-    border-radius: 40px;
+    border-radius: 32px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    aspect-ratio: 1290 / 2796;
+    object-fit: contain;
+    object-position: top;
 }
 
 .feature-content {
@@ -554,7 +738,10 @@ img {
 }
 
 .phone-ai .phone-screen {
-    width: 430px;
+    width: min(100%, 320px);
+    aspect-ratio: 1290 / 2796;
+    object-fit: contain;
+    object-position: top;
 }
 
 .ai-glow {
@@ -727,30 +914,51 @@ img {
     transform: translateY(0);
 }
 
+@media (prefers-reduced-motion: reduce) {
+    .hero-badge,
+    .hero-title,
+    .hero-subtitle,
+    .hero-actions,
+    .hero-proof,
+    .hero-panel,
+    .phone-mockup,
+    .ai-sparkle {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    .hero-panel-phone {
+        animation: none !important;
+    }
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
     .hero {
-        flex-direction: column;
-        text-align: center;
-        padding-top: 100px;
+        padding-top: 104px;
+        gap: 20px;
     }
 
     .hero-content {
-        max-width: 100%;
+        max-width: 760px;
+        margin: 0 auto;
     }
 
-    .hero-subtitle {
-        margin-left: auto;
-        margin-right: auto;
+    .hero-title {
+        font-size: clamp(1.75rem, 4.8vw, 2.4rem);
     }
 
-    .hero-phones {
-        min-height: auto;
-        margin-top: 40px;
+    .hero-gallery {
+        gap: 14px;
     }
 
-    .phone-secondary {
-        display: none;
+    .hero-panel {
+        border-radius: 22px;
+        padding: 12px;
+    }
+
+    .hero-panel .phone-frame {
+        width: clamp(100px, 14vw, 146px);
     }
 
     .features-grid {
@@ -788,12 +996,71 @@ img {
         display: none;
     }
 
+    .hero {
+        padding-top: 98px;
+        gap: 16px;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+        width: min(92vw, 360px);
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-cta,
+    .hero-cta-ghost {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .hero-proof {
+        width: min(95vw, 420px);
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .proof-item {
+        flex: 1 1 100%;
+        white-space: normal;
+    }
+
+    .hero-gallery {
+        grid-template-columns: 1fr;
+        width: min(96vw, 430px);
+        margin-inline: auto;
+        gap: 14px;
+    }
+
+    .hero-panel {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+
+    .hero-panel-phone {
+        animation: none;
+    }
+
+    .hero-panel-top {
+        margin-bottom: 10px;
+    }
+
+    .hero-panel-title {
+        font-size: 0.92rem;
+    }
+
+    .hero-panel .phone-frame {
+        width: min(46vw, 172px);
+    }
+
     .phone-screen {
-        width: 200px;
+        width: min(100%, 260px);
     }
 
     .phone-ai .phone-screen {
-        width: 240px;
+        width: min(100%, 260px);
     }
 
     .stats-container {
@@ -811,6 +1078,32 @@ img {
     .hero-badge {
         font-size: 0.8rem;
         padding: 6px 12px;
+    }
+
+    .hero-title {
+        font-size: clamp(1.58rem, 8.8vw, 2rem);
+    }
+
+    .hero-subtitle {
+        font-size: 0.92rem;
+    }
+
+    .hero-gallery {
+        width: min(96vw, 360px);
+    }
+
+    .hero-panel {
+        padding: 10px;
+        border-radius: 20px;
+    }
+
+    .hero-panel .phone-frame {
+        width: min(48vw, 156px);
+    }
+
+    .hero-panel-meta {
+        font-size: 0.7rem;
+        padding: 4px 8px;
     }
 
     .feature-card {

@@ -9,7 +9,9 @@
         content="Track spending, crush budgets, and build better money habits with AI-powered insights. Download CashGraph today.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&family=Sora:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="logo.png" type="image/png">
 </head>
@@ -35,38 +37,71 @@
         <div class="hero-content">
             <div class="hero-badge">
                 <span class="badge-dot"></span>
-                AI-Powered Finance
+                CashGraph for iPhone
             </div>
             <h1 class="hero-title">
-                <span class="gradient-text">Master Your Money.</span>
-                <br>Build Better Habits.
+                Modern Money Tracking.
+                <br>
+                <span class="gradient-text">Zero Noise. Full Clarity.</span>
             </h1>
             <p class="hero-subtitle">
-                See where every dollar goes. Get personalized insights from your AI habit coach.
+                Built for people who want one clear financial picture. Track faster, spot patterns sooner, and improve
+                habits with AI-backed feedback.
             </p>
-            <a href="#download" class="hero-cta">
-                <svg class="apple-icon" viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                        d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
-                </svg>
-                Download on App Store
-            </a>
-        </div>
-        <div class="hero-phones">
-            <div class="phone-mockup phone-main">
-                <div class="phone-frame">
-                    <img src="Simulator Screenshot - iPhone 16 Plus - 2026-02-09 at 21.51.50.png"
-                        alt="CashGraph Stats View" class="phone-screen">
-                </div>
+            <div class="hero-actions">
+                <a href="#download" class="hero-cta">
+                    <svg class="apple-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
+                    </svg>
+                    Download on App Store
+                </a>
+                <a href="#features" class="hero-cta-ghost">Explore Features</a>
             </div>
-            <div class="phone-mockup phone-secondary">
-                <div class="phone-frame">
-                    <img src="Simulator Screenshot - iPhone 16 Plus - 2026-02-09 at 21.53.12.png"
-                        alt="CashGraph Weekly Chart" class="phone-screen">
-                </div>
+            <div class="hero-proof">
+                <div class="proof-item">Fast entry</div>
+                <div class="proof-item">Heatmap behavior view</div>
+                <div class="proof-item">Category-level control</div>
             </div>
         </div>
-        <div class="hero-glow"></div>
+
+        <div class="hero-gallery" aria-label="CashGraph app screens">
+            <article class="hero-panel panel-home" data-hero-panel style="--delay: 0.14s;">
+                <div class="hero-panel-top">
+                    <span class="hero-panel-title">Homepage</span>
+                    <span class="hero-panel-meta">Live overview</span>
+                </div>
+                <div class="hero-panel-phone">
+                    <div class="phone-frame">
+                        <img src="homepage.png" alt="CashGraph homepage dashboard" class="phone-screen">
+                    </div>
+                </div>
+            </article>
+
+            <article class="hero-panel panel-heatmap" data-hero-panel style="--delay: 0.24s;">
+                <div class="hero-panel-top">
+                    <span class="hero-panel-title">Heatmap</span>
+                    <span class="hero-panel-meta">Habit visibility</span>
+                </div>
+                <div class="hero-panel-phone">
+                    <div class="phone-frame">
+                        <img src="Heatmap.png" alt="CashGraph heatmap screen" class="phone-screen">
+                    </div>
+                </div>
+            </article>
+
+            <article class="hero-panel panel-category" data-hero-panel style="--delay: 0.34s;">
+                <div class="hero-panel-top">
+                    <span class="hero-panel-title">Category Display</span>
+                    <span class="hero-panel-meta">Spending distribution</span>
+                </div>
+                <div class="hero-panel-phone">
+                    <div class="phone-frame">
+                        <img src="categorydisplay.png" alt="CashGraph category display screen" class="phone-screen">
+                    </div>
+                </div>
+            </article>
+        </div>
     </section>
 
     <!-- Features Section -->
@@ -77,7 +112,7 @@
         <div class="features-grid">
             <div class="feature-card feature-large">
                 <div class="feature-visual">
-                    <img src="Simulator Screenshot - iPhone 16 Plus - 2026-02-09 at 21.52.07.png"
+                    <img src="stats.png"
                         alt="Spending Categories" class="feature-image">
                 </div>
                 <div class="feature-content">
@@ -160,7 +195,7 @@
             <div class="ai-coach-visual">
                 <div class="phone-mockup phone-ai">
                     <div class="phone-frame">
-                        <img src="Simulator Screenshot - iPhone 16 Plus - 2026-02-09 at 21.54.38.png"
+                        <img src="smartentry.png"
                             alt="AI Habit Coach" class="phone-screen">
                     </div>
                 </div>
