@@ -14,36 +14,47 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="logo.png" type="image/png">
     <style>
+        body {
+            background: #000000;
+            color: #ffffff;
+            font-family: 'Inter', -apple-system, sans-serif;
+            line-height: 1.7;
+        }
+
         .terms-page {
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
-            padding: 140px 24px 96px;
+            padding: 110px 24px 72px;
         }
 
         .terms-title {
             font-family: 'Sora', sans-serif;
             font-size: clamp(2rem, 4vw, 3rem);
             letter-spacing: -0.02em;
+            color: #8B5CF6;
+            display: inline-block;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #8B5CF6;
         }
 
         .terms-updated {
-            margin-top: 8px;
-            color: var(--text-secondary);
+            margin-top: 10px;
+            color: #d4d4d8;
         }
 
         .terms-toc-section {
             margin: 32px 0 40px;
-            background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
+            background: rgba(20, 20, 20, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 16px;
             padding: 20px;
         }
 
         .terms-toc-title {
-            font-size: 1rem;
-            letter-spacing: 0.08em;
+            font-size: 0.95rem;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
-            color: var(--text-muted);
+            color: #a1a1aa;
             margin-bottom: 12px;
         }
 
@@ -56,12 +67,14 @@
         }
 
         .terms-toc a {
-            color: var(--text-secondary);
-            font-weight: 500;
+            color: #8B5CF6;
+            font-weight: 600;
+            text-decoration: underline;
+            text-underline-offset: 3px;
         }
 
         .terms-toc a:hover {
-            color: var(--text-primary);
+            color: #A855F7;
         }
 
         .terms-section {
@@ -72,11 +85,12 @@
         .terms-section h2 {
             font-size: 1.2rem;
             margin-bottom: 12px;
+            color: #ffffff;
         }
 
         .terms-section p,
         .terms-section li {
-            color: var(--text-secondary);
+            color: #ffffff;
         }
 
         .terms-section ul {
@@ -86,7 +100,7 @@
 
         .terms-divider {
             border: none;
-            border-top: 1px solid var(--border-subtle);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
             margin: 24px 0;
         }
     </style>
