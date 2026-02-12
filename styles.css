@@ -343,7 +343,7 @@ img {
 .hero-gallery {
     width: 100%;
     max-width: none;
-    margin: 0;
+    margin: 60px auto 0;
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -355,8 +355,7 @@ img {
     position: relative;
     width: auto;
     max-width: none;
-    margin-top: 60px;
-    margin-bottom: -80px;
+    margin: 0 auto;
 }
 
 .hero-panel-right {
