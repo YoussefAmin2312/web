@@ -356,15 +356,17 @@ img {
     display: flex;
     justify-content: flex-end;
     align-items: flex-start;
+    width: fit-content;
+    max-width: none;
+    margin-left: auto;
+    margin-right: 0;
+    align-self: flex-end;
 }
 
 .hero-panel-right {
     margin-left: auto;
 }
 
-.hero-panel-right .phone-screen {
-    width: min(46vw, 260px);
-}
 
 .panel-heatmap,
 .panel-category {
@@ -447,6 +449,11 @@ img {
     aspect-ratio: 1290 / 2796;
     object-fit: contain;
     object-position: top;
+}
+
+.hero-panel-right .phone-screen {
+    width: min(38vw, 240px);
+    max-width: none;
 }
 
 .panel-home {
