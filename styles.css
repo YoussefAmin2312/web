@@ -362,7 +362,12 @@ img {
 }
 
 .hero-panel-right .phone-screen {
-    width: min(72vw, 360px);
+    width: min(60vw, 300px);
+}
+
+.panel-heatmap,
+.panel-category {
+    display: none;
 }
 
 .hero-panel {
