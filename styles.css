@@ -183,7 +183,11 @@ img {
 }
 
 .hero::before {
-    content: none;
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: #000000;
+    z-index: 0;
 }
 
 .hero::after {
