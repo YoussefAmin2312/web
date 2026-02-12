@@ -346,7 +346,7 @@ img {
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: clamp(14px, 2.2vw, 24px);
+    gap: clamp(6px, 1vw, 12px);
     position: relative;
     z-index: 1;
     align-items: start;
