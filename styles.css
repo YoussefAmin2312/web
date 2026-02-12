@@ -356,7 +356,7 @@ img {
     display: flex;
     justify-content: flex-end;
     align-items: flex-start;
-    width: fit-content;
+    width: auto;
     max-width: none;
     margin-left: auto;
     margin-right: 0;
@@ -451,9 +451,18 @@ img {
     object-position: top;
 }
 
+.hero-panel-raw .phone-screen {
+    width: min(28vw, 220px);
+    max-width: 220px;
+    height: auto;
+    display: block;
+}
+
 .hero-panel-right .phone-screen {
-    width: min(38vw, 240px);
-    max-width: none;
+    width: min(28vw, 220px);
+    max-width: 220px;
+    height: auto;
+    display: block;
 }
 
 .panel-home {
