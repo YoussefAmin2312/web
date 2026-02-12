@@ -350,7 +350,7 @@ img {
     position: absolute;
     right: clamp(24px, 5vw, 96px);
     bottom: clamp(24px, 6vw, 96px);
-    z-index: 1;
+    z-index: 2;
 }
 
 .hero-gallery-single {
