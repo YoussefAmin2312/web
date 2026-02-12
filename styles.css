@@ -353,16 +353,17 @@ img {
 }
 
 .hero-gallery-single {
-    grid-template-columns: 1fr;
-    justify-items: end;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
 }
 
 .hero-panel-right {
-    justify-self: end;
+    margin-left: auto;
 }
 
 .hero-panel-right .phone-screen {
-    width: min(60vw, 300px);
+    width: min(46vw, 260px);
 }
 
 .panel-heatmap,
