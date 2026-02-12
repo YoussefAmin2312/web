@@ -178,7 +178,7 @@ img {
     align-items: center;
     gap: clamp(18px, 2.6vw, 28px);
     position: relative;
-    overflow: clip;
+    overflow: visible;
     background: #000000;
 }
 
@@ -341,26 +341,24 @@ img {
 
 /* Hero Gallery */
 .hero-gallery {
-    width: 100%;
-    max-width: var(--container-max);
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: clamp(6px, 1vw, 12px);
-    position: relative;
+    width: auto;
+    max-width: none;
+    margin: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    position: absolute;
+    right: clamp(24px, 5vw, 96px);
+    bottom: clamp(24px, 6vw, 96px);
     z-index: 1;
-    align-items: start;
 }
 
 .hero-gallery-single {
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-start;
+    position: absolute;
+    right: clamp(24px, 5vw, 96px);
+    bottom: clamp(24px, 6vw, 96px);
     width: auto;
     max-width: none;
-    margin-left: auto;
-    margin-right: 0;
-    align-self: flex-end;
 }
 
 .hero-panel-right {
@@ -399,8 +397,8 @@ img {
 
 
 .hero-panel-phone {
-    border-radius: 22px;
-    overflow: hidden;
+    border-radius: 0;
+    overflow: visible;
     animation: panelPhoneFloat 7.5s ease-in-out infinite;
 }
 
@@ -452,15 +450,15 @@ img {
 }
 
 .hero-panel-raw .phone-screen {
-    width: min(28vw, 220px);
-    max-width: 220px;
+    width: clamp(180px, 22vw, 280px) !important;
+    max-width: 280px !important;
     height: auto;
     display: block;
 }
 
 .hero-panel-right .phone-screen {
-    width: min(28vw, 220px);
-    max-width: 220px;
+    width: clamp(180px, 22vw, 280px) !important;
+    max-width: 280px !important;
     height: auto;
     display: block;
 }
@@ -1050,10 +1048,12 @@ img {
     }
 
     .hero-gallery {
-        grid-template-columns: 1fr;
-        width: min(96vw, 430px);
+        position: relative;
+        right: auto;
+        bottom: auto;
+        width: 100%;
         margin-inline: auto;
-        gap: 14px;
+        justify-content: center;
     }
 
     .hero-panel {
@@ -1064,6 +1064,11 @@ img {
 
     .hero-panel-phone {
         animation: none;
+    }
+
+    .hero-panel-raw .phone-screen {
+        width: min(70vw, 300px) !important;
+        max-width: 300px !important;
     }
 
     .hero-panel-top {
