@@ -352,6 +352,19 @@ img {
     align-items: start;
 }
 
+.hero-gallery-single {
+    grid-template-columns: 1fr;
+    justify-items: end;
+}
+
+.hero-panel-right {
+    justify-self: end;
+}
+
+.hero-panel-right .phone-screen {
+    width: min(72vw, 360px);
+}
+
 .hero-panel {
     position: relative;
     background: transparent;
