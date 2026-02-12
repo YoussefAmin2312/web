@@ -168,9 +168,10 @@ img {
 
 /* Hero Section */
 .hero {
-    min-height: auto;
-    max-width: var(--container-max);
-    margin: 0 auto;
+    min-height: 100vh;
+    width: 100%;
+    max-width: none;
+    margin: 0;
     padding: clamp(86px, 10vw, 114px) 24px clamp(42px, 6vw, 72px);
     display: flex;
     flex-direction: column;
@@ -192,6 +193,7 @@ img {
 .hero-content {
     width: 100%;
     max-width: 860px;
+    margin: 0 auto;
     text-align: center;
     position: relative;
     z-index: 1;
@@ -336,6 +338,8 @@ img {
 /* Hero Gallery */
 .hero-gallery {
     width: 100%;
+    max-width: var(--container-max);
+    margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: clamp(14px, 2.2vw, 24px);
