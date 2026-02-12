@@ -26,7 +26,7 @@
 
     /* Spacing */
     --section-padding: clamp(60px, 10vw, 120px);
-    --container-max: 1440px;
+    --container-max: 100%;
 
     /* Transitions */
     --transition-fast: 0.2s ease;
