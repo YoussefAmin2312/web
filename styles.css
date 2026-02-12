@@ -200,7 +200,7 @@ img {
     margin: 0 auto;
     text-align: center;
     position: relative;
-    z-index: 1;
+    z-index: 2;
 }
 
 .hero-badge {
@@ -343,12 +343,12 @@ img {
 .hero-gallery {
     width: 100%;
     max-width: none;
-    margin: 60px auto 0;
+    margin: clamp(60px, 8vw, 120px) auto 0;
     display: flex;
     justify-content: center;
     align-items: flex-start;
     position: relative;
-    z-index: 2;
+    z-index: 1;
 }
 
 .hero-gallery-single {
