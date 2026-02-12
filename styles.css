@@ -388,6 +388,10 @@ img {
     margin: 0 auto;
 }
 
+.hero-panel-raw .phone-frame {
+    display: none;
+}
+
 .panel-heatmap .hero-panel-phone {
     animation-delay: -1.5s;
 }
