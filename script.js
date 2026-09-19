@@ -1,5 +1,5 @@
 /* ========================================
-   CashGraph Landing Page - Interactions
+   Moneviq Landing Page - Interactions
    ======================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
