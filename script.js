@@ -3,6 +3,8 @@
    ======================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     // Smooth scroll for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -13,63 +15,36 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            e.preventDefault();
             const target = document.querySelector(href);
             if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         });
     });
 
-    // Intersection Observer for fade-in animations
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
-    };
-
-    const fadeObserver = new IntersectionObserver((entries) => {
+    // Scroll reveal: stagger siblings that enter together
+    const revealObserver = new IntersectionObserver((entries) => {
+        let batch = 0;
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                fadeObserver.unobserve(entry.target);
-            }
+            if (!entry.isIntersecting) return;
+            entry.target.style.setProperty('--reveal-delay', `${Math.min(batch, 5) * 0.08}s`);
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target);
+            batch++;
         });
-    }, observerOptions);
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
 
-    // Add fade-in class to elements that should animate
-    const animateElements = document.querySelectorAll(
-        '.feature-card, .stat-item, .ai-coach-content, .ai-coach-visual, .download-container'
-    );
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-    animateElements.forEach((el, index) => {
-        el.classList.add('fade-in');
-        el.style.transitionDelay = `${index * 0.1}s`;
-        fadeObserver.observe(el);
-    });
-
-    // Navbar background opacity on scroll
+    // Navbar background on scroll
     const navbar = document.querySelector('.navbar');
-    let lastScroll = 0;
-
-    window.addEventListener('scroll', () => {
-        const currentScroll = window.pageYOffset;
-
-        if (currentScroll > 100) {
-            navbar.style.background = 'rgba(0, 0, 0, 0.95)';
-        } else {
-            navbar.style.background = 'rgba(0, 0, 0, 0.8)';
-        }
-
-        lastScroll = currentScroll;
-    }, { passive: true });
+    const updateNavbar = () => navbar.classList.toggle('scrolled', window.scrollY > 40);
+    updateNavbar();
+    window.addEventListener('scroll', updateNavbar, { passive: true });
 
     // Hero panel micro-interaction (desktop only)
     const heroPanels = document.querySelectorAll('[data-hero-panel]');
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     if (!prefersReducedMotion && heroPanels.length > 0 && window.innerWidth > 1024) {
         heroPanels.forEach((panel) => {
@@ -89,16 +64,116 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Ensure hero screenshots render as soon as loaded
-    document.querySelectorAll('.hero-panel .phone-screen').forEach((img) => {
-        if (img.complete) return;
-        img.addEventListener('load', () => {
-            img.style.opacity = '1';
-        }, { once: true });
-    });
-
+    buildHeatmap();
+    initEntryDemo(prefersReducedMotion);
     initHeroSwirl();
 });
+
+// Habit heatmap card: 22 weeks x 7 days, quiet at first then building into a habit
+function buildHeatmap() {
+    const grid = document.querySelector('[data-heatmap]');
+    if (!grid) return;
+
+    let seed = 7;
+    const random = () => {
+        seed = (seed * 16807) % 2147483647;
+        return seed / 2147483647;
+    };
+
+    const weeks = 22;
+    const cells = [];
+    for (let w = 0; w < weeks; w++) {
+        for (let d = 0; d < 7; d++) {
+            let level = 0;
+            if (w >= 8) {
+                const weekday = d < 5 ? 0.35 : 0;
+                const r = random() + weekday;
+                level = r > 1.15 ? 4 : r > 0.9 ? 3 : r > 0.6 ? 2 : r > 0.3 ? 1 : 0;
+            }
+            cells.push(`<i data-l="${level}" style="--i:${w * 7 + d}"></i>`);
+        }
+    }
+    grid.innerHTML = cells.join('');
+}
+
+// Smart Entry demo: types a sentence, then shows the parsed transactions
+function initEntryDemo(reducedMotion) {
+    const demo = document.querySelector('[data-entry-demo]');
+    if (!demo) return;
+
+    const textEl = demo.querySelector('[data-entry-text]');
+    const resultsEl = demo.querySelector('[data-entry-results]');
+
+    const examples = [
+        {
+            text: 'coffee $5, lunch $12',
+            rows: [
+                { name: 'Coffee', cat: 'Food', amt: '-$5.00', ico: 'F', color: '#f5b971' },
+                { name: 'Lunch', cat: 'Food', amt: '-$12.00', ico: 'F', color: '#f5b971' }
+            ]
+        },
+        {
+            text: 'uber ride 23 dollars',
+            rows: [
+                { name: 'Uber ride', cat: 'Transport', amt: '-$23.00', ico: 'T', color: '#c4b5fd' }
+            ]
+        },
+        {
+            text: 'got 500 salary',
+            rows: [
+                { name: 'Salary', cat: 'Income', amt: '+$500.00', ico: '$', color: '#34d399', income: true }
+            ]
+        }
+    ];
+
+    const renderRows = (rows) => {
+        resultsEl.innerHTML = rows.map((row, i) => `
+            <div class="entry-row" style="animation-delay:${i * 0.12}s">
+                <span class="entry-row-ico" style="--c:${row.color}">${row.ico}</span>
+                <span>
+                    <div class="entry-row-name">${row.name}</div>
+                    <div class="entry-row-cat">${row.cat}</div>
+                </span>
+                <span class="entry-row-amt${row.income ? ' income' : ''}">${row.amt}</span>
+            </div>`).join('');
+    };
+
+    if (reducedMotion) {
+        textEl.textContent = examples[0].text;
+        renderRows(examples[0].rows);
+        return;
+    }
+
+    const wait = (ms) => new Promise(r => setTimeout(r, ms));
+    let started = false;
+
+    const run = async () => {
+        for (let n = 0; ; n = (n + 1) % examples.length) {
+            const ex = examples[n];
+            resultsEl.innerHTML = '';
+            textEl.textContent = '';
+            await wait(400);
+            for (const ch of ex.text) {
+                textEl.textContent += ch;
+                await wait(45 + Math.random() * 45);
+            }
+            await wait(350);
+            demo.classList.add('sending');
+            await wait(250);
+            demo.classList.remove('sending');
+            renderRows(ex.rows);
+            await wait(2600);
+        }
+    };
+
+    new IntersectionObserver((entries, obs) => {
+        if (entries[0].isIntersecting && !started) {
+            started = true;
+            obs.disconnect();
+            run();
+        }
+    }, { threshold: 0.3 }).observe(demo);
+}
 
 function initHeroSwirl() {
     const container = document.querySelector('.hero .content--canvas');
